@@ -18,10 +18,11 @@ namespace ELM_SMP
 
         Matrix<double> X;
         Matrix<double> Y;
+        public Matrix<double> Xtrain,Xtest,Ytrain,Ytest;
         //actfun (1./(1+exp(-x))) //logistic function its called in this library //or i can (tanh+1)/2
         int bias;
 
-        public ELM(int nInputs,int nHidden,int bias,Matrix<double> data)
+        public ELM(int nInputs,int nHidden,int bias,Matrix<double> data, int proportions)
         {
             this.nInputs = nInputs;
             this.nHidden = nHidden;
@@ -29,26 +30,67 @@ namespace ELM_SMP
             Matrix<double>[] XY= rearrangingData6feat(data);
             this.X =XY[0];
             this.Y = XY[1];
+            Matrix<double>[] ret = setProportionsOfData( X, Y, 80);
+            this.Xtrain = ret[0];
+            this.Ytrain = ret[1];
+            this.Xtest = ret[2];
+            this.Ytest = ret[3];
 
         }
 
-        public void train(Matrix<double> X, Matrix<double> Y)
+
+        /// <summary>
+        /// Returns array of matrices where element at index 0 is Xtrain,at 1 Ytrain, at 2 Xtest at  3 Ytest
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="perc"></param>
+        /// <returns></returns>
+        public Matrix<double>[] setProportionsOfData( Matrix<double>  X, Matrix<double>  Y, int perc)
         {
-            // X.append tutaj
-//            X = [(ones(size(X, 1), 1) * obj.bias) X];
-//            obj.IW = randInitializeWeights(obj.nInputs, obj.nHidden);
-//            obj.H = X * obj.IW';
-//obj.Betha = pinv(obj.H) * Y;
+            if (perc < 15)
+                perc = 20;
+            if (perc > 95)
+                perc = 90;
+            // Matrix<double> Xtrain = Matrix<double>.Build.Dense(X.RowCount, X.ColumnCount, X.ToColumnMajorArray());
+            // Matrix<double> Xtrain = Matrix<double>.Build.DenseOfMatrix(X);
+            int trainingSize = (perc * X.RowCount) / 100;
+            Matrix<double> Xtrain = X.SubMatrix(0, trainingSize, 0, X.ColumnCount);
+            Matrix<double> Xtest = X.SubMatrix(trainingSize, X.RowCount-trainingSize, 0, X.ColumnCount);
+            Matrix<double> Ytrain = Y.SubMatrix(0, trainingSize, 0, Y.ColumnCount);
+            Matrix<double> Ytest = Y.SubMatrix(trainingSize, Y.RowCount - trainingSize, 0, Y.ColumnCount);
+
+            Matrix<double>[] XtrYtrXtYt = new Matrix<double>[4];
+
+            XtrYtrXtYt[0] = Xtrain;
+            XtrYtrXtYt[1] = Ytrain;
+            XtrYtrXtYt[2] = Xtest;
+            XtrYtrXtYt[3] = Ytest;
+            return XtrYtrXtYt;
+
         }
-        public void predict(Matrix<double> X)
+        public void train(Matrix<double> Xtrainset, Matrix<double> Ytrainset)
         {
-            //X = [(ones(size(X, 1), 1) * obj.bias) X];
-            //Hi = X * obj.IW';
-            //Y = Hi * obj.Betha;
+            Matrix<double> biasM = Matrix<double>.Build.Dense(Xtrainset.RowCount, 1, (i, j) => 1*this.bias);
+            Xtrainset = biasM.Append(Xtrainset);
+            double epsilon_init = 0.12;
+            IW = Matrix<double>.Build.Random(nHidden, nInputs + 1).Multiply(2 * epsilon_init).Add(-epsilon_init);
+            this.H = Xtrainset.Multiply(IW.Transpose());
+            this.Betha = H.PseudoInverse().Multiply(Ytrainset);
+        }
+        public Matrix<double> predict(Matrix<double> Xtest)
+        {
+            Matrix<double> biasM = Matrix<double>.Build.Dense(Xtest.RowCount, 1, (i, j) => 1 * this.bias);
+            Xtest = biasM.Append(Xtest);
+            Matrix<double> Hi = Xtest.Multiply(this.IW.Transpose());
+            Matrix<double> Y = Hi.Multiply(this.Betha);
+            return Y;
         }
 
         public Matrix<double>[] rearrangingData6feat(Matrix<double> X)
         {
+           
+         
             Matrix<double>[] XY = new Matrix<double>[2];
             int rc = X.RowCount;
             int todelete = rc % 6;
@@ -70,11 +112,12 @@ namespace ELM_SMP
 
             }
 
-            for (int i = 0; i < nrows/6; i = i+6)
+            for (int i = 0; i < nrows; i = i+6)
             {
                 for (int j = 0; j < 30; j++)
                 {
-                    
+
+               
                         if (j <= 5)
                             fin[i/6][j] = Xra[i][j];
                         else if (j <= 11)
@@ -95,32 +138,12 @@ namespace ELM_SMP
 
             XY[0] = Matrix<double>.Build.DenseOfRowArrays(fin);
             XY[1] = Matrix<double>.Build.DenseOfRowArrays(finy);
+
+          
             return XY;
         }
 
     }
 
-
-    //public static t[][] tojaggedarray<t>(this t[,] twodimensionalarray)
-    //{
-    //    int rowsfirstindex = twodimensionalarray.getlowerbound(0);
-    //    int rowslastindex = twodimensionalarray.getupperbound(0);
-    //    int numberofrows = rowslastindex + 1;
-
-    //    int columnsfirstindex = twodimensionalarray.getlowerbound(1);
-    //    int columnslastindex = twodimensionalarray.getupperbound(1);
-    //    int numberofcolumns = columnslastindex + 1;
-
-    //    t[][] jaggedarray = new t[numberofrows][];
-    //    for (int i = rowsfirstindex; i <= rowslastindex; i++)
-    //    {
-    //        jaggedarray[i] = new t[numberofcolumns];
-
-    //        for (int j = columnsfirstindex; j <= columnslastindex; j++)
-    //        {
-    //            jaggedarray[i][j] = twodimensionalarray[i, j];
-    //        }
-    //    }
-    //    return jaggedarray;
-    //}
+    
 }

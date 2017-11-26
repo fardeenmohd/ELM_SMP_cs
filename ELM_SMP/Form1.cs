@@ -28,7 +28,10 @@ namespace ELM_SMP
             if (DialogResult.OK == ofile.ShowDialog())
             {
                 data = DelimitedReader.Read<double>(ofile.FileName, false, ",", true, System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
-                ELM elm = new ELM(15, 500, 1, data);
+                ELM elm = new ELM(30, 500, 1, data,80);
+                elm.train(elm.Xtrain, elm.Ytrain);
+                Matrix<double> prediction = elm.predict(elm.Xtest);
+                // TODO prediction gives 6 colums we dont need column 0 and 5 , because they are time and volume, then we compute r^2 and draw graphs
             }
         }
     }
