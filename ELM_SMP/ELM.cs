@@ -59,35 +59,42 @@ namespace ELM_SMP
              double[][] Xra = X.ToRowArrays();
            // double[,] Xra = X.ToArray();
             Array.Reverse(Xra);
-            int nrows=Xra.;
-            // this 3 lines wont be needed later need to change them
-            //Matrix<double> Xflipped = Matrix<double>.Build.DenseOfRowArrays(Xra);
-            //int ncols = Xflipped.ColumnCount;
-            //int nrows = Xflipped.RowCount;
-            //double[][] fin =new double[nrows/6][];
-            //double[][] finy = new double[nrows / 6][];
-            //for (int i = 0; i < nrows; i=+6)
-            //{
-            //    for (int j = 0; j < 30; j++)
-            //    {
-            //        if (j <= 5)
-            //            fin[i][j] = Xra[i][j];
-            //        else if (j<=11)
-            //            fin[i][j] = Xra[i+1][j-6];
-            //        else if (j <= 17)
-            //            fin[i][j] = Xra[i + 2][j - 12];
-            //        else if (j <= 23)
-            //            fin[i][j] = Xra[i + 3][j - 18];
-            //        else if (j <= 29)
-            //            fin[i][j] = Xra[i + 4][j - 24];
+            
+            int nrows=Xra.Count();
+            double[][] fin = new double[nrows / 6][];
+            double[][] finy = new double[nrows / 6][];
+            for(int k=0;k<nrows/6;k++)
+            {
+                fin[k] = new double[30];
+                finy[k] = new double[6];
 
-            //    }
-            //    finy[i] = Xra[i + 5];
-            //}
+            }
 
-           // XY[0] = Matrix<double>.Build.DenseOfRowArrays(fin);
-           // XY[1] = Matrix<double>.Build.DenseOfRowArrays(finy);
+            for (int i = 0; i < nrows/6; i = i+6)
+            {
+                for (int j = 0; j < 30; j++)
+                {
+                    
+                        if (j <= 5)
+                            fin[i/6][j] = Xra[i][j];
+                        else if (j <= 11)
+                            fin[i/6][j] = Xra[i + 1][j - 6];
+                        else if (j <= 17)
+                            fin[i/6][j] = Xra[i + 2][j - 12];
+                        else if (j <= 23)
+                            fin[i/6][j] = Xra[i + 3][j - 18];
+                        else if (j <= 29)
+                            fin[i/6][j] = Xra[i + 4][j - 24];
+                    
+                    
 
+                    
+                }
+                finy[i/6] = Xra[i + 5];
+            }
+
+            XY[0] = Matrix<double>.Build.DenseOfRowArrays(fin);
+            XY[1] = Matrix<double>.Build.DenseOfRowArrays(finy);
             return XY;
         }
 
