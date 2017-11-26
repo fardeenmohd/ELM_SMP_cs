@@ -15,7 +15,7 @@ namespace ELM_SMP
 {
     public partial class Form1 : Form
     {
-        Matrix<double> data;// = DelimitedReader.Read<double>("data.csv", false, ",", true);
+        Matrix<double> data;
         public Form1()
         {
             InitializeComponent();
@@ -28,9 +28,7 @@ namespace ELM_SMP
             if (DialogResult.OK == ofile.ShowDialog())
             {
                 data = DelimitedReader.Read<double>(ofile.FileName, false, ",", true, System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
-                var ci = System.Globalization.CultureInfo.CurrentCulture.NumberFormat;
-                int a = 5;
-             
+                ELM elm = new ELM(15, 500, 1, data);
             }
         }
     }
