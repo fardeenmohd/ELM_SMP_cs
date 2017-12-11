@@ -12,25 +12,33 @@ namespace ELM_SMP
     {
         int nInputs;
         int nHidden;
+        int nOutputs;
+        int nFeatures;
+        int bias;
+        int trainProportion;
+
         Matrix<double> IW;
         Matrix<double> Betha;
         Matrix<double> H;
-
         Matrix<double> X;
         Matrix<double> Y;
         public Matrix<double> Xtrain,Xtest,Ytrain,Ytest;
         //actfun (1./(1+exp(-x))) //logistic function its called in this library //or i can (tanh+1)/2
-        int bias;
+        
 
-        public ELM(int nInputs,int nHidden,int bias,Matrix<double> data, int proportions)
+        public ELM(int nInputs,int nHidden,int nOutputs,int bias,Matrix<double> data, int trainProportion)
         {
             this.nInputs = nInputs;
             this.nHidden = nHidden;
+            this.nOutputs = nOutputs;
             this.bias = bias;
+            this.trainProportion = trainProportion;
+            data = data.SubMatrix(0, data.RowCount, 1, 4);
+            this.nFeatures = data.ColumnCount;
             Matrix<double>[] XY= rearrangingData6feat(data);
             this.X =XY[0];
             this.Y = XY[1];
-            Matrix<double>[] ret = setProportionsOfData( X, Y, 80);
+            Matrix<double>[] ret = setProportionsOfData( X, Y, trainProportion);
             this.Xtrain = ret[0];
             this.Ytrain = ret[1];
             this.Xtest = ret[2];
@@ -87,12 +95,22 @@ namespace ELM_SMP
             return Y;
         }
 
-        public Matrix<double>[] rearrangingData6feat(Matrix<double> X)
+        public Matrix<double>[] rearrangeData(Matrix<double> X)
         {
-           
-         
             Matrix<double>[] XY = new Matrix<double>[2];
             int rc = X.RowCount;
+            int sizeOfRearrangedData = rc - (nInputs + nOutputs) + 1;
+
+            return XY;
+
+        }
+
+        public Matrix<double>[] rearrangingData6feat(Matrix<double> X)
+        {
+                   
+            Matrix<double>[] XY = new Matrix<double>[2];
+            int rc = X.RowCount;
+ 
             int todelete = rc % 6;
             if (todelete != 0)
                 for(int i =0;i<todelete;i++)
