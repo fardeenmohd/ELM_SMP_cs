@@ -33,9 +33,10 @@ namespace ELM_SMP
             this.nOutputs = nOutputs;
             this.bias = bias;
             this.trainProportion = trainProportion;
-            data = data.SubMatrix(0, data.RowCount, 1, 4);
+            //data = data.SubMatrix(0, data.RowCount, 1, 4);
             this.nFeatures = data.ColumnCount;
             Matrix<double>[] XY= rearrangingData6feat(data);
+            Matrix<double>[] XY1 = rearrangeData(data);
             this.X =XY[0];
             this.Y = XY[1];
             Matrix<double>[] ret = setProportionsOfData( X, Y, trainProportion);
@@ -98,8 +99,23 @@ namespace ELM_SMP
         public Matrix<double>[] rearrangeData(Matrix<double> X)
         {
             Matrix<double>[] XY = new Matrix<double>[2];
+            
+            
             int rc = X.RowCount;
+            int cc = X.ColumnCount;
             int sizeOfRearrangedData = rc - (nInputs + nOutputs) + 1;
+
+            Matrix<double> XT = X.Transpose();
+
+            int j = 0;
+
+            for (int i = 0; i < sizeOfRearrangedData; i++)
+            {
+                          
+                
+
+            }
+            
 
             return XY;
 

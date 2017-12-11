@@ -80,15 +80,9 @@ namespace ELM_SMP
         private void button_Predict_Click(object sender, EventArgs e)
         {
             Matrix<double> prediction = elm.predict(elm.Xtest);
-            // TODO prediction gives 6 colums we dont need column 0 and 5 , because they are time and volume, then we compute r^2 and draw graphs
+
             var pred = prediction.ToArray();
             var ytest = elm.Ytest.ToArray();
-
-            for (int i = 0; i < 100; i++)
-                for (int j = 0; j < 6; j++)
-                {
-
-                }
             //DelimitedWriter.Write(@"H:\Windows7\Documents\prediction.csv", prediction, ",", System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
             //DelimitedWriter.Write(@"H:\Windows7\Documents\Ytest.csv", elm.Ytest, ",");
         }
