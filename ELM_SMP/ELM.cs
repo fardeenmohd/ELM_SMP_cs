@@ -23,7 +23,7 @@ namespace ELM_SMP
         Matrix<double> X;
         Matrix<double> Y;
         public Matrix<double> Xtrain,Xtest,Ytrain,Ytest;
-        //actfun (1./(1+exp(-x))) //logistic function its called in this library //or i can (tanh+1)/2
+       
         
 
         public ELM(int nInputs,int nHidden,int nOutputs,int bias,Matrix<double> data, int trainProportion)
@@ -33,10 +33,9 @@ namespace ELM_SMP
             this.nOutputs = nOutputs;
             this.bias = bias;
             this.trainProportion = trainProportion;
-            //data = data.SubMatrix(0, data.RowCount, 1, 4);
+            data = data.SubMatrix(0, data.RowCount, 1, 4);
             this.nFeatures = data.ColumnCount;
-            Matrix<double>[] XY= rearrangingData6feat(data);
-            Matrix<double>[] XY1 = rearrangeData(data);
+            Matrix<double>[] XY = rearrangeData(data);
             this.X =XY[0];
             this.Y = XY[1];
             Matrix<double>[] ret = setProportionsOfData( X, Y, trainProportion);
@@ -61,8 +60,7 @@ namespace ELM_SMP
                 perc = 20;
             if (perc > 95)
                 perc = 90;
-            // Matrix<double> Xtrain = Matrix<double>.Build.Dense(X.RowCount, X.ColumnCount, X.ToColumnMajorArray());
-            // Matrix<double> Xtrain = Matrix<double>.Build.DenseOfMatrix(X);
+          
             int trainingSize = (perc * X.RowCount) / 100;
             Matrix<double> Xtrain = X.SubMatrix(0, trainingSize, 0, X.ColumnCount);
             Matrix<double> Xtest = X.SubMatrix(trainingSize, X.RowCount-trainingSize, 0, X.ColumnCount);
@@ -83,7 +81,7 @@ namespace ELM_SMP
             Matrix<double> biasM = Matrix<double>.Build.Dense(Xtrainset.RowCount, 1, (i, j) => 1*this.bias);
             Xtrainset = biasM.Append(Xtrainset);
             double epsilon_init = 0.12;
-            IW = Matrix<double>.Build.Random(nHidden, nInputs + 1).Multiply(2 * epsilon_init).Add(-epsilon_init);
+            IW = Matrix<double>.Build.Random(nHidden, nInputs*this.nFeatures + 1).Multiply(2 * epsilon_init).Add(-epsilon_init);
             this.H = Xtrainset.Multiply(IW.Transpose());
             this.Betha = H.PseudoInverse().Multiply(Ytrainset);
         }
@@ -109,73 +107,37 @@ namespace ELM_SMP
 
             int j = 0;
 
-            for (int i = 0; i < sizeOfRearrangedData; i++)
+            double[] Xar = XT.ToColumnMajorArray();
+            Array.Reverse(Xar);
+            double[][] oX = new double[sizeOfRearrangedData][];
+            double[][] oY = new double[sizeOfRearrangedData][];
+
+            for (int k = 0; k < sizeOfRearrangedData; k++)
             {
-                          
+                oX[k] = new double[this.nInputs*cc];
+                oY[k] = new double[this.nOutputs*cc];
+
+            }
+
+            for (int i = 0; i < sizeOfRearrangedData ; i++)
+            {
+                double[] newXRow = new ArraySegment<double>(Xar, 0, this.nInputs * cc).ToArray();
+                double[] newYRow = new ArraySegment<double>(Xar, nInputs * cc + j, cc * this.nOutputs).ToArray();
+
+                oX[i] = newXRow;
+                oY[i] = newYRow;
                 
+                j = i * cc ;
 
             }
-            
+
+            XY[0] = Matrix<double>.Build.DenseOfRowArrays(oX);
+            XY[1] = Matrix<double>.Build.DenseOfRowArrays(oY);
 
             return XY;
 
         }
-
-        public Matrix<double>[] rearrangingData6feat(Matrix<double> X)
-        {
-                   
-            Matrix<double>[] XY = new Matrix<double>[2];
-            int rc = X.RowCount;
- 
-            int todelete = rc % 6;
-            if (todelete != 0)
-                for(int i =0;i<todelete;i++)
-                X=X.RemoveRow(X.RowCount-1);
-            //X = X.PointwiseTanh().Add(1).Divide(2); // should be the same as sigmoid
-             double[][] Xra = X.ToRowArrays();
-           // double[,] Xra = X.ToArray();
-            Array.Reverse(Xra);
-            
-            int nrows=Xra.Count();
-            double[][] fin = new double[nrows / 6][];
-            double[][] finy = new double[nrows / 6][];
-            for(int k=0;k<nrows/6;k++)
-            {
-                fin[k] = new double[30];
-                finy[k] = new double[6];
-
-            }
-
-            for (int i = 0; i < nrows; i = i+6)
-            {
-                for (int j = 0; j < 30; j++)
-                {
-
-               
-                        if (j <= 5)
-                            fin[i/6][j] = Xra[i][j];
-                        else if (j <= 11)
-                            fin[i/6][j] = Xra[i + 1][j - 6];
-                        else if (j <= 17)
-                            fin[i/6][j] = Xra[i + 2][j - 12];
-                        else if (j <= 23)
-                            fin[i/6][j] = Xra[i + 3][j - 18];
-                        else if (j <= 29)
-                            fin[i/6][j] = Xra[i + 4][j - 24];
-                    
-                    
-
-                    
-                }
-                finy[i/6] = Xra[i + 5];
-            }
-
-            XY[0] = Matrix<double>.Build.DenseOfRowArrays(fin);
-            XY[1] = Matrix<double>.Build.DenseOfRowArrays(finy);
-
-          
-            return XY;
-        }
+        
 
     }
 

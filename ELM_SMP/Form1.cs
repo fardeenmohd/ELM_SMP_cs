@@ -17,6 +17,7 @@ namespace ELM_SMP
     {
         Matrix<double> data;
         ELM elm;
+
         
         public Form1()
         {
@@ -81,10 +82,11 @@ namespace ELM_SMP
         {
             Matrix<double> prediction = elm.predict(elm.Xtest);
 
-            var pred = prediction.ToArray();
-            var ytest = elm.Ytest.ToArray();
-            //DelimitedWriter.Write(@"H:\Windows7\Documents\prediction.csv", prediction, ",", System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
-            //DelimitedWriter.Write(@"H:\Windows7\Documents\Ytest.csv", elm.Ytest, ",");
+            double[,] pred = prediction.ToArray();
+            double[,] ytest = elm.Ytest.ToArray();
+  
         }
+        
+
     }
 }
