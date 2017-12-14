@@ -8,6 +8,9 @@ using MathNet.Numerics.LinearAlgebra;
 
 namespace ELM_SMP
 {
+    /// <summary>
+    /// 
+    /// </summary>
     class ELM
     {
         int nInputs;
@@ -23,9 +26,16 @@ namespace ELM_SMP
         Matrix<double> X;
         Matrix<double> Y;
         public Matrix<double> Xtrain,Xtest,Ytrain,Ytest;
-       
-        
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nInputs"></param>
+        /// <param name="nHidden"></param>
+        /// <param name="nOutputs"></param>
+        /// <param name="bias"></param>
+        /// <param name="data"></param>
+        /// <param name="trainProportion"></param>
         public ELM(int nInputs,int nHidden,int nOutputs,int bias,Matrix<double> data, int trainProportion)
         {
             this.nInputs = nInputs;
@@ -76,6 +86,11 @@ namespace ELM_SMP
             return XtrYtrXtYt;
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Xtrainset"></param>
+        /// <param name="Ytrainset"></param>
         public void train(Matrix<double> Xtrainset, Matrix<double> Ytrainset)
         {
             Matrix<double> biasM = Matrix<double>.Build.Dense(Xtrainset.RowCount, 1, (i, j) => 1*this.bias);
@@ -85,6 +100,11 @@ namespace ELM_SMP
             this.H = Xtrainset.Multiply(IW.Transpose());
             this.Betha = H.PseudoInverse().Multiply(Ytrainset);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Xtest"></param>
+        /// <returns></returns>
         public Matrix<double> predict(Matrix<double> Xtest)
         {
             Matrix<double> biasM = Matrix<double>.Build.Dense(Xtest.RowCount, 1, (i, j) => 1 * this.bias);
@@ -94,6 +114,11 @@ namespace ELM_SMP
             return Y;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="X"></param>
+        /// <returns></returns>
         public Matrix<double>[] rearrangeData(Matrix<double> X)
         {
             Matrix<double>[] XY = new Matrix<double>[2];
