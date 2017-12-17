@@ -72,6 +72,8 @@
             this.chart_HighPrice = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart_LowPrice = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.button_PlotBestSample = new System.Windows.Forms.Button();
+            this.output_CompanyName = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_OpenPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_ClosePrice)).BeginInit();
@@ -216,7 +218,7 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(117, 465);
+            this.pictureBox1.Location = new System.Drawing.Point(117, 517);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(94, 89);
             this.pictureBox1.TabIndex = 15;
@@ -225,7 +227,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(114, 564);
+            this.label7.Location = new System.Drawing.Point(114, 616);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(94, 13);
             this.label7.TabIndex = 16;
@@ -234,7 +236,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(114, 577);
+            this.label8.Location = new System.Drawing.Point(114, 629);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(97, 13);
             this.label8.TabIndex = 17;
@@ -243,7 +245,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(114, 590);
+            this.label9.Location = new System.Drawing.Point(114, 642);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(69, 13);
             this.label9.TabIndex = 18;
@@ -383,11 +385,31 @@
             this.button_PlotBestSample.UseVisualStyleBackColor = true;
             this.button_PlotBestSample.Click += new System.EventHandler(this.button_PlotBestSample_Click);
             // 
+            // output_CompanyName
+            // 
+            this.output_CompanyName.Enabled = false;
+            this.output_CompanyName.Location = new System.Drawing.Point(117, 442);
+            this.output_CompanyName.Name = "output_CompanyName";
+            this.output_CompanyName.ReadOnly = true;
+            this.output_CompanyName.Size = new System.Drawing.Size(195, 20);
+            this.output_CompanyName.TabIndex = 32;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(9, 445);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(57, 13);
+            this.label13.TabIndex = 31;
+            this.label13.Text = "Company :";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1198, 661);
+            this.Controls.Add(this.output_CompanyName);
+            this.Controls.Add(this.label13);
             this.Controls.Add(this.button_PlotBestSample);
             this.Controls.Add(this.chart_LowPrice);
             this.Controls.Add(this.chart_HighPrice);
@@ -464,6 +486,8 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_HighPrice;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_LowPrice;
         private System.Windows.Forms.Button button_PlotBestSample;
+        private System.Windows.Forms.TextBox output_CompanyName;
+        private System.Windows.Forms.Label label13;
     }
 }
 

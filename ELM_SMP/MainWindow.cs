@@ -49,6 +49,7 @@ namespace ELM_SMP
                 try
                 {
                     data = DelimitedReader.Read<double>(ofile.FileName, false, ",", true, System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
+                    output_CompanyName.Text = ofile.FileName.Split('\\')[ofile.FileName.Split('\\').Length - 1].Split('.')[0];
                     button_CreateElm.Enabled = true;
                 }
                 catch(Exception exception)
