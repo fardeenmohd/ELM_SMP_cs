@@ -9,7 +9,8 @@ using MathNet.Numerics.LinearAlgebra;
 namespace ELM_SMP
 {
     /// <summary>
-    /// 
+    /// Author: Fardin Mohammed
+    /// Last Modified Date: 17.12.2017
     /// </summary>
     class ELM
     {
@@ -28,13 +29,13 @@ namespace ELM_SMP
         public Matrix<double> Xtrain,Xtest,Ytrain,Ytest;
 
         /// <summary>
-        /// 
+        /// Constructor for the ELM Network 
         /// </summary>
-        /// <param name="nInputs"></param>
-        /// <param name="nHidden"></param>
-        /// <param name="nOutputs"></param>
-        /// <param name="bias"></param>
-        /// <param name="data"></param>
+        /// <param name="nInputs">Number of days to use in predictions</param>
+        /// <param name="nHidden">Size of the hidden layer</param>
+        /// <param name="nOutputs">Number of days we want to predict</param>
+        /// <param name="bias">Bias value for each layer</param>
+        /// <param name="data">Data from the file turned into a matrix</param>
         /// <param name="trainProportion"></param>
         public ELM(int nInputs,int nHidden,int nOutputs,int bias,Matrix<double> data, int trainProportion)
         {
@@ -43,7 +44,7 @@ namespace ELM_SMP
             this.nOutputs = nOutputs;
             this.bias = bias;
             this.trainProportion = trainProportion;
-            data = data.SubMatrix(0, data.RowCount, 1, 4);
+            //data = data.SubMatrix(0, data.RowCount, 1, 4);
             this.nFeatures = data.ColumnCount;
             Matrix<double>[] XY = rearrangeData(data);
             this.X =XY[0];
@@ -133,7 +134,7 @@ namespace ELM_SMP
             int j = 0;
 
             double[] Xar = XT.ToColumnMajorArray();
-            Array.Reverse(Xar);
+            //Array.Reverse(Xar);
             double[][] oX = new double[sizeOfRearrangedData][];
             double[][] oY = new double[sizeOfRearrangedData][];
 

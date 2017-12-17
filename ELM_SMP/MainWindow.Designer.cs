@@ -71,6 +71,7 @@
             this.chart_ClosePrice = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart_HighPrice = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart_LowPrice = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.button_PlotBestSample = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_OpenPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_ClosePrice)).BeginInit();
@@ -80,7 +81,7 @@
             // 
             // button_CSV
             // 
-            this.button_CSV.Location = new System.Drawing.Point(114, 44);
+            this.button_CSV.Location = new System.Drawing.Point(12, 45);
             this.button_CSV.Name = "button_CSV";
             this.button_CSV.Size = new System.Drawing.Size(300, 23);
             this.button_CSV.TabIndex = 0;
@@ -91,7 +92,7 @@
             // button_Train
             // 
             this.button_Train.Enabled = false;
-            this.button_Train.Location = new System.Drawing.Point(114, 223);
+            this.button_Train.Location = new System.Drawing.Point(12, 224);
             this.button_Train.Name = "button_Train";
             this.button_Train.Size = new System.Drawing.Size(300, 23);
             this.button_Train.TabIndex = 1;
@@ -102,7 +103,7 @@
             // button_Predict
             // 
             this.button_Predict.Enabled = false;
-            this.button_Predict.Location = new System.Drawing.Point(114, 252);
+            this.button_Predict.Location = new System.Drawing.Point(12, 253);
             this.button_Predict.Name = "button_Predict";
             this.button_Predict.Size = new System.Drawing.Size(300, 23);
             this.button_Predict.TabIndex = 2;
@@ -113,7 +114,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(111, 73);
+            this.label1.Location = new System.Drawing.Point(9, 74);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(113, 13);
             this.label1.TabIndex = 3;
@@ -122,7 +123,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(111, 98);
+            this.label2.Location = new System.Drawing.Point(9, 99);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(121, 13);
             this.label2.TabIndex = 4;
@@ -131,7 +132,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(111, 121);
+            this.label3.Location = new System.Drawing.Point(9, 122);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(168, 13);
             this.label3.TabIndex = 5;
@@ -140,7 +141,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(111, 143);
+            this.label4.Location = new System.Drawing.Point(9, 144);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(116, 13);
             this.label4.TabIndex = 6;
@@ -149,7 +150,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(111, 165);
+            this.label5.Location = new System.Drawing.Point(9, 166);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 13);
             this.label5.TabIndex = 7;
@@ -157,35 +158,35 @@
             // 
             // input_InputDays
             // 
-            this.input_InputDays.Location = new System.Drawing.Point(314, 73);
+            this.input_InputDays.Location = new System.Drawing.Point(212, 74);
             this.input_InputDays.Name = "input_InputDays";
             this.input_InputDays.Size = new System.Drawing.Size(100, 20);
             this.input_InputDays.TabIndex = 8;
             // 
             // input_OutputDays
             // 
-            this.input_OutputDays.Location = new System.Drawing.Point(314, 98);
+            this.input_OutputDays.Location = new System.Drawing.Point(212, 99);
             this.input_OutputDays.Name = "input_OutputDays";
             this.input_OutputDays.Size = new System.Drawing.Size(100, 20);
             this.input_OutputDays.TabIndex = 9;
             // 
             // input_HiddenLayerSize
             // 
-            this.input_HiddenLayerSize.Location = new System.Drawing.Point(314, 121);
+            this.input_HiddenLayerSize.Location = new System.Drawing.Point(212, 122);
             this.input_HiddenLayerSize.Name = "input_HiddenLayerSize";
             this.input_HiddenLayerSize.Size = new System.Drawing.Size(100, 20);
             this.input_HiddenLayerSize.TabIndex = 10;
             // 
             // input_BiasValue
             // 
-            this.input_BiasValue.Location = new System.Drawing.Point(314, 142);
+            this.input_BiasValue.Location = new System.Drawing.Point(212, 143);
             this.input_BiasValue.Name = "input_BiasValue";
             this.input_BiasValue.Size = new System.Drawing.Size(100, 20);
             this.input_BiasValue.TabIndex = 11;
             // 
             // input_TrainPercentage
             // 
-            this.input_TrainPercentage.Location = new System.Drawing.Point(314, 165);
+            this.input_TrainPercentage.Location = new System.Drawing.Point(212, 166);
             this.input_TrainPercentage.Name = "input_TrainPercentage";
             this.input_TrainPercentage.Size = new System.Drawing.Size(100, 20);
             this.input_TrainPercentage.TabIndex = 12;
@@ -193,7 +194,7 @@
             // button_CreateElm
             // 
             this.button_CreateElm.Enabled = false;
-            this.button_CreateElm.Location = new System.Drawing.Point(114, 194);
+            this.button_CreateElm.Location = new System.Drawing.Point(12, 195);
             this.button_CreateElm.Name = "button_CreateElm";
             this.button_CreateElm.Size = new System.Drawing.Size(300, 23);
             this.button_CreateElm.TabIndex = 13;
@@ -205,7 +206,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(106, 12);
+            this.label6.Location = new System.Drawing.Point(4, 13);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(258, 20);
             this.label6.TabIndex = 14;
@@ -215,16 +216,16 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(7, 15);
+            this.pictureBox1.Location = new System.Drawing.Point(117, 465);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(93, 96);
+            this.pictureBox1.Size = new System.Drawing.Size(94, 89);
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(4, 124);
+            this.label7.Location = new System.Drawing.Point(114, 564);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(94, 13);
             this.label7.TabIndex = 16;
@@ -233,7 +234,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(4, 149);
+            this.label8.Location = new System.Drawing.Point(114, 577);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(97, 13);
             this.label8.TabIndex = 17;
@@ -242,7 +243,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(4, 173);
+            this.label9.Location = new System.Drawing.Point(114, 590);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(69, 13);
             this.label9.TabIndex = 18;
@@ -251,7 +252,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(111, 291);
+            this.label10.Location = new System.Drawing.Point(9, 292);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(74, 13);
             this.label10.TabIndex = 19;
@@ -260,7 +261,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(111, 322);
+            this.label11.Location = new System.Drawing.Point(9, 323);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(102, 13);
             this.label11.TabIndex = 20;
@@ -268,7 +269,7 @@
             // 
             // output_TrainingTime
             // 
-            this.output_TrainingTime.Location = new System.Drawing.Point(219, 291);
+            this.output_TrainingTime.Location = new System.Drawing.Point(117, 292);
             this.output_TrainingTime.Name = "output_TrainingTime";
             this.output_TrainingTime.ReadOnly = true;
             this.output_TrainingTime.Size = new System.Drawing.Size(100, 20);
@@ -276,7 +277,7 @@
             // 
             // output_SampleCount
             // 
-            this.output_SampleCount.Location = new System.Drawing.Point(219, 319);
+            this.output_SampleCount.Location = new System.Drawing.Point(117, 320);
             this.output_SampleCount.Name = "output_SampleCount";
             this.output_SampleCount.ReadOnly = true;
             this.output_SampleCount.Size = new System.Drawing.Size(100, 20);
@@ -285,7 +286,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(111, 349);
+            this.label12.Location = new System.Drawing.Point(9, 350);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(78, 13);
             this.label12.TabIndex = 23;
@@ -294,7 +295,7 @@
             // input_SelectedSample
             // 
             this.input_SelectedSample.Enabled = false;
-            this.input_SelectedSample.Location = new System.Drawing.Point(219, 346);
+            this.input_SelectedSample.Location = new System.Drawing.Point(117, 347);
             this.input_SelectedSample.Name = "input_SelectedSample";
             this.input_SelectedSample.Size = new System.Drawing.Size(100, 20);
             this.input_SelectedSample.TabIndex = 24;
@@ -302,7 +303,7 @@
             // button_Plot
             // 
             this.button_Plot.Enabled = false;
-            this.button_Plot.Location = new System.Drawing.Point(114, 372);
+            this.button_Plot.Location = new System.Drawing.Point(12, 373);
             this.button_Plot.Name = "button_Plot";
             this.button_Plot.Size = new System.Drawing.Size(300, 23);
             this.button_Plot.TabIndex = 25;
@@ -316,7 +317,7 @@
             this.chart_OpenPrice.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart_OpenPrice.Legends.Add(legend1);
-            this.chart_OpenPrice.Location = new System.Drawing.Point(459, 31);
+            this.chart_OpenPrice.Location = new System.Drawing.Point(357, 32);
             this.chart_OpenPrice.Name = "chart_OpenPrice";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
@@ -332,7 +333,7 @@
             this.chart_ClosePrice.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             this.chart_ClosePrice.Legends.Add(legend2);
-            this.chart_ClosePrice.Location = new System.Drawing.Point(876, 31);
+            this.chart_ClosePrice.Location = new System.Drawing.Point(774, 32);
             this.chart_ClosePrice.Name = "chart_ClosePrice";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
@@ -347,7 +348,7 @@
             this.chart_HighPrice.ChartAreas.Add(chartArea3);
             legend3.Name = "Legend1";
             this.chart_HighPrice.Legends.Add(legend3);
-            this.chart_HighPrice.Location = new System.Drawing.Point(459, 349);
+            this.chart_HighPrice.Location = new System.Drawing.Point(357, 350);
             this.chart_HighPrice.Name = "chart_HighPrice";
             series3.ChartArea = "ChartArea1";
             series3.Legend = "Legend1";
@@ -362,7 +363,7 @@
             this.chart_LowPrice.ChartAreas.Add(chartArea4);
             legend4.Name = "Legend1";
             this.chart_LowPrice.Legends.Add(legend4);
-            this.chart_LowPrice.Location = new System.Drawing.Point(876, 349);
+            this.chart_LowPrice.Location = new System.Drawing.Point(774, 350);
             this.chart_LowPrice.Name = "chart_LowPrice";
             series4.ChartArea = "ChartArea1";
             series4.Legend = "Legend1";
@@ -371,11 +372,23 @@
             this.chart_LowPrice.Size = new System.Drawing.Size(400, 300);
             this.chart_LowPrice.TabIndex = 29;
             // 
-            // Form1
+            // button_PlotBestSample
+            // 
+            this.button_PlotBestSample.Enabled = false;
+            this.button_PlotBestSample.Location = new System.Drawing.Point(12, 402);
+            this.button_PlotBestSample.Name = "button_PlotBestSample";
+            this.button_PlotBestSample.Size = new System.Drawing.Size(300, 23);
+            this.button_PlotBestSample.TabIndex = 30;
+            this.button_PlotBestSample.Text = "Plot Best Sample";
+            this.button_PlotBestSample.UseVisualStyleBackColor = true;
+            this.button_PlotBestSample.Click += new System.EventHandler(this.button_PlotBestSample_Click);
+            // 
+            // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1324, 661);
+            this.ClientSize = new System.Drawing.Size(1198, 661);
+            this.Controls.Add(this.button_PlotBestSample);
             this.Controls.Add(this.chart_LowPrice);
             this.Controls.Add(this.chart_HighPrice);
             this.Controls.Add(this.chart_ClosePrice);
@@ -406,7 +419,7 @@
             this.Controls.Add(this.button_Predict);
             this.Controls.Add(this.button_Train);
             this.Controls.Add(this.button_CSV);
-            this.Name = "Form1";
+            this.Name = "MainWindow";
             this.Text = "Stock Prediction ELM";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_OpenPrice)).EndInit();
@@ -450,6 +463,7 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_ClosePrice;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_HighPrice;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_LowPrice;
+        private System.Windows.Forms.Button button_PlotBestSample;
     }
 }
 
