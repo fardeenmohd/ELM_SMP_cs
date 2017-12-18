@@ -126,7 +126,8 @@ namespace ELM_SMP
             input_SelectedSample.Enabled = true;
             button_Plot.Enabled = true;
             button_PlotBestSample.Enabled = true;
-            
+            plot_at_index(getBestIndex());
+
         }
 
         /// <summary>
@@ -168,6 +169,13 @@ namespace ELM_SMP
             double[] testClosePrice = new ArraySegment<double>(selectedTestSample, dataOffset, dataOffset).ToArray();
             double[] testHighPrice = new ArraySegment<double>(selectedTestSample, 2 * dataOffset, dataOffset).ToArray();
             double[] testLowPrice = new ArraySegment<double>(selectedTestSample, 3 * dataOffset, dataOffset).ToArray();
+
+            output_MSEOpen.Text = getMeanSquare(predOpenPrice, testOpenPrice).ToString();
+            output_MSEClose.Text = getMeanSquare(predClosePrice, testClosePrice).ToString();
+            output_MSEHigh.Text = getMeanSquare(predHighPrice, testHighPrice).ToString();
+            output_MSELow.Text = getMeanSquare(predLowPrice, testLowPrice).ToString();
+
+            input_SelectedSample.Text = (index + 1).ToString();
 
             chart_OpenPrice.Series.Clear();
             chart_OpenPrice.Series.Add("Predicted");
@@ -235,25 +243,29 @@ namespace ELM_SMP
         /// <param name="e"></param>
         private void button_PlotBestSample_Click(object sender, EventArgs e)
         {
-            double minimumDistance = double.MaxValue;
-            int bestIndex = 0;
-            for(int i =0; i < prediction.RowCount; i++)
-            {
-                double[] selectedPredSample = prediction.Row(i).ToArray();
-                double[] selectedTestSample = test.Row(i).ToArray();
 
-                double distance = distanceBetweenLines(selectedPredSample, selectedTestSample);
-                if (distance <= minimumDistance)
-                {
-                    minimumDistance = distance;
-                    bestIndex = i;
-                }
+            plot_at_index(getBestIndex());
+            
+        }
+
+        /// <summary>
+        /// Gets the MSE between two arrays
+        /// </summary>
+        /// <param name="arr1"></param>
+        /// <param name="arr2"></param>
+        /// <returns></returns>
+        public double getMeanSquare(double[] arr1, double[] arr2)
+        {
+            double MSE = 0;
+
+            for (int i = 0; i < arr1.Length; i++)
+            {
+                MSE += Math.Pow(arr1[i] - arr2[i], 2);
             }
 
-            plot_at_index(bestIndex);
-            input_SelectedSample.Text = (bestIndex+1).ToString();
+            MSE = MSE / arr1.Length;
 
-
+            return Math.Round(MSE,3);
         }
 
         /// <summary>
@@ -262,7 +274,7 @@ namespace ELM_SMP
         /// <param name="arr1"></param>
         /// <param name="arr2"></param>
         /// <returns></returns>
-        public double distanceBetweenLines(double[] arr1, double[] arr2)
+        public double getDistanceBetweenLines(double[] arr1, double[] arr2)
         {
             double distance = 0;
 
@@ -275,5 +287,27 @@ namespace ELM_SMP
 
             return distance;
         }
+
+        public int getBestIndex()
+        {
+            double minimumDistance = double.MaxValue;
+            int bestIndex = 0;
+            for (int i = 0; i < prediction.RowCount; i++)
+            {
+                double[] selectedPredSample = prediction.Row(i).ToArray();
+                double[] selectedTestSample = test.Row(i).ToArray();
+
+                double distance = getDistanceBetweenLines(selectedPredSample, selectedTestSample);
+                if (distance <= minimumDistance)
+                {
+                    minimumDistance = distance;
+                    bestIndex = i;
+                }
+            }
+
+            return bestIndex;
+        }
+
+        
     }
 }
