@@ -10,7 +10,7 @@ namespace ELM_SMP
 {
     /// <summary>
     /// Author: Fardin Mohammed
-    /// Last Modified Date: 17.12.2017
+    /// Last Modified Date: 07.01.2018
     /// </summary>
     class ELM
     {
@@ -88,7 +88,7 @@ namespace ELM_SMP
 
         }
         /// <summary>
-        /// 
+        /// Trains the ELM
         /// </summary>
         /// <param name="Xtrainset"></param>
         /// <param name="Ytrainset"></param>
@@ -102,7 +102,7 @@ namespace ELM_SMP
             this.Betha = H.PseudoInverse().Multiply(Ytrainset);
         }
         /// <summary>
-        /// 
+        /// Predicts using the ELM
         /// </summary>
         /// <param name="Xtest"></param>
         /// <returns></returns>
@@ -116,7 +116,7 @@ namespace ELM_SMP
         }
 
         /// <summary>
-        /// 
+        /// Custom tailor the data for the ELM depending on how many days to use for how many days of prediction
         /// </summary>
         /// <param name="X"></param>
         /// <returns></returns>
@@ -134,7 +134,6 @@ namespace ELM_SMP
             int j = 0;
 
             double[] Xar = XT.ToColumnMajorArray();
-            //Array.Reverse(Xar);
             double[][] oX = new double[sizeOfRearrangedData][];
             double[][] oY = new double[sizeOfRearrangedData][];
 

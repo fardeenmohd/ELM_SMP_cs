@@ -11,9 +11,10 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ELM_SMP
 {
-    
+
     /// <summary>
-    /// 
+    /// Author: Fardin Mohammed
+    /// Last Modified Date: 07.01.2018
     /// </summary>
     public partial class StatWindow : Form
     {
@@ -21,7 +22,7 @@ namespace ELM_SMP
         private double[] xAxis;
 
         /// <summary>
-        /// 
+        /// Constructor for the statistics window
         /// </summary>
         /// <param name="openPriceErrors"></param>
         /// <param name="closePriceErrors"></param>
@@ -34,15 +35,15 @@ namespace ELM_SMP
             InitializeComponent();
             this.xAxis = xAxis;
             this.Text = type + " Statistics";
-            setUpChart(chart_OpenPrice, openPriceErrors, type);
-            setUpChart(chart_ClosePrice, closePriceErrors, type);
-            setUpChart(chart_HighPrice, highPriceErrors, type);
-            setUpChart(chart_LowPrice, lowPriceErrors, type);
+            setUpChart(chart_OpenPrice, openPriceErrors, type, "Open Price Error");
+            setUpChart(chart_ClosePrice, closePriceErrors, type, "Close Price Error");
+            setUpChart(chart_HighPrice, highPriceErrors, type, "High Price Error");
+            setUpChart(chart_LowPrice, lowPriceErrors, type, "Low Price Error");
         }
 
 
         /// <summary>
-        /// 
+        /// Puts custom labels for the Xaxis on the charts
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -52,7 +53,7 @@ namespace ELM_SMP
         }
 
         /// <summary>
-        /// 
+        /// Puts custom labels for the Xaxis on the charts
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -62,7 +63,7 @@ namespace ELM_SMP
         }
 
         /// <summary>
-        /// 
+        /// Puts custom labels for the Xaxis on the charts
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -72,7 +73,7 @@ namespace ELM_SMP
         }
 
         /// <summary>
-        /// 
+        /// Puts custom labels for the Xaxis on the charts
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -83,12 +84,12 @@ namespace ELM_SMP
 
 
         /// <summary>
-        /// 
+        /// Helper function to initialize charts
         /// </summary>
         /// <param name="chart"></param>
         /// <param name="data"></param>
         /// <param name="type"></param>
-        private void setUpChart(Chart chart, double[] data, string type)
+        private void setUpChart(Chart chart, double[] data, string type, string name)
         {
             chart.Series.Clear();
             chart.Series.Add("Error");
@@ -100,11 +101,11 @@ namespace ELM_SMP
             chart.ChartAreas[0].AxisX.MajorGrid.LineWidth = 0;
             chart.ChartAreas[0].AxisY.MajorGrid.LineWidth = 0;
             chart.ChartAreas[0].AxisX.Title = type;
-            chart.ChartAreas[0].AxisY.Title = "Open Price Error";
+            chart.ChartAreas[0].AxisY.Title = name;
         }
 
         /// <summary>
-        /// 
+        /// Helper function to use an array for the x axis labels
         /// </summary>
         /// <param name="chart"></param>
         /// <param name="xAxis"></param>

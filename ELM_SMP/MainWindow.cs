@@ -15,7 +15,7 @@ namespace ELM_SMP
 {
     /// <summary>
     /// Author: Fardin Mohammed
-    /// Last Modified Date: 17.12.2017
+    /// Last Modified Date: 07.01.2018
     /// </summary>
     public partial class MainWindow : Form
     {
@@ -41,7 +41,7 @@ namespace ELM_SMP
         }
 
         /// <summary>
-        /// 
+        /// Loads the CSV file full of stock data for the companies
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -161,7 +161,7 @@ namespace ELM_SMP
         }
 
         /// <summary>
-        /// 
+        /// Helper function to set up charts after predicting
         /// </summary>
         /// <param name="chart"></param>
         /// <param name="predPrice"></param>
@@ -273,7 +273,7 @@ namespace ELM_SMP
         }
 
         /// <summary>
-        /// 
+        /// Gets the best prediction of the ELM
         /// </summary>
         /// <param name="prediction"></param>
         /// <param name="test"></param>
@@ -300,7 +300,7 @@ namespace ELM_SMP
         
 
         /// <summary>
-        /// 
+        /// Initializes the statistics window with the appropriate testing type
         /// </summary>
         /// <param name="type"></param>
         /// <param name="testOffset"></param>
@@ -376,7 +376,7 @@ namespace ELM_SMP
 
 
         /// <summary>
-        /// 
+        /// Shows stats for input days
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -387,7 +387,7 @@ namespace ELM_SMP
         }
 
         /// <summary>
-        /// 
+        /// Shows stats for output days
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -397,7 +397,7 @@ namespace ELM_SMP
         }
 
         /// <summary>
-        /// 
+        /// Shows stats for hidden layer size
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -407,7 +407,7 @@ namespace ELM_SMP
         }
 
         /// <summary>
-        /// 
+        /// Shows stats for training percentage
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
