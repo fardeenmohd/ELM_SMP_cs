@@ -182,6 +182,10 @@ namespace ELM_SMP
             chart.ChartAreas[0].AxisY.MajorGrid.LineWidth = 0;
             chart.ChartAreas[0].AxisX.Title = "Days";
             chart.ChartAreas[0].AxisY.Title = type;
+            
+            chart.ChartAreas[0].AxisY.Minimum = Math.Min(predPrice.Min(),testPrice.Min()) - 0.25;
+            chart.ChartAreas[0].AxisY.Maximum = Math.Max(predPrice.Max(), testPrice.Max()) + 0.25;
+
         }
 
         /// <summary>
