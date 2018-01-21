@@ -44,7 +44,6 @@ namespace ELM_SMP
             this.nOutputs = nOutputs;
             this.bias = bias;
             this.trainProportion = trainProportion;
-            //data = data.SubMatrix(0, data.RowCount, 1, 4);
             this.nFeatures = data.ColumnCount;
             Matrix<double>[] XY = rearrangeData(data);
             this.X =XY[0];
@@ -96,8 +95,7 @@ namespace ELM_SMP
         {
             Matrix<double> biasM = Matrix<double>.Build.Dense(Xtrainset.RowCount, 1, (i, j) => 1*this.bias);
             Xtrainset = biasM.Append(Xtrainset);
-            //double epsilon_init = 0.12;
-            IW = Matrix<double>.Build.Random(nHidden, nInputs * this.nFeatures + 1);//.Multiply(2 * epsilon_init).Add(-epsilon_init);
+            IW = Matrix<double>.Build.Random(nHidden, nInputs * this.nFeatures + 1);
             this.H = Xtrainset.Multiply(IW.Transpose());
             this.Betha = H.PseudoInverse().Multiply(Ytrainset);
         }
