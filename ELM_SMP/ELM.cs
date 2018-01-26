@@ -131,7 +131,7 @@ namespace ELM_SMP
 
             int j = 0;
 
-            double[] Xar = XT.ToColumnMajorArray();
+            double[] Xar = X.ToColumnMajorArray();
             double[][] oX = new double[sizeOfRearrangedData][];
             double[][] oY = new double[sizeOfRearrangedData][];
 

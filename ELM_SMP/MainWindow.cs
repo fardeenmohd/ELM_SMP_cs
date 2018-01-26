@@ -369,6 +369,8 @@ namespace ELM_SMP
                 double[] testHighPrice = new ArraySegment<double>(selectedTestSample, 2 * dataOffset, dataOffset).ToArray();
                 double[] testLowPrice = new ArraySegment<double>(selectedTestSample, 3 * dataOffset, dataOffset).ToArray();
 
+
+
                 double tempOpenPriceError = GetMeanSquare(predOpenPrice, testOpenPrice);
                 double tempClosePriceError = GetMeanSquare(predClosePrice, testClosePrice);
                 double tempHighPriceError = GetMeanSquare(predHighPrice, testHighPrice);
