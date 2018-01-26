@@ -144,7 +144,7 @@ namespace ELM_SMP
 
             for (int i = 0; i < sizeOfRearrangedData ; i++)
             {
-                double[] newXRow = new ArraySegment<double>(Xar, 0, this.nInputs * cc).ToArray();
+                double[] newXRow = new ArraySegment<double>(Xar, j, this.nInputs * cc).ToArray();
                 double[] newYRow = new ArraySegment<double>(Xar, nInputs * cc + j, cc * this.nOutputs).ToArray();
 
                 oX[i] = newXRow;

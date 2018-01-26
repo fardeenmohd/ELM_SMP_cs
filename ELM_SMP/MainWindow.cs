@@ -206,11 +206,20 @@ namespace ELM_SMP
             double[] testClosePrice = new ArraySegment<double>(selectedTestSample, dataOffset, dataOffset).ToArray();
             double[] testHighPrice = new ArraySegment<double>(selectedTestSample, 2 * dataOffset, dataOffset).ToArray();
             double[] testLowPrice = new ArraySegment<double>(selectedTestSample, 3 * dataOffset, dataOffset).ToArray();
+            
+            Matrix<double> error = prediction.Subtract(test);
+            Matrix<double> error1 = error.PointwisePower(2);
+            Vector<double> error2 = error1.ColumnSums().Divide(error1.RowCount);
 
-            output_MSEOpen.Text = GetMeanSquare(predOpenPrice, testOpenPrice).ToString();
-            output_MSEClose.Text = GetMeanSquare(predClosePrice, testClosePrice).ToString();
-            output_MSEHigh.Text = GetMeanSquare(predHighPrice, testHighPrice).ToString();
-            output_MSELow.Text = GetMeanSquare(predLowPrice, testLowPrice).ToString();
+            double openPriceError = error2.SubVector(0, dataOffset).Sum() / dataOffset;
+            double closePriceError = error2.SubVector(dataOffset, dataOffset).Sum() / dataOffset;
+            double highPriceError = error2.SubVector(2*dataOffset, dataOffset).Sum() / dataOffset;
+            double lowPriceError = error2.SubVector(3*dataOffset, dataOffset).Sum() / dataOffset;
+
+            output_MSEOpen.Text = openPriceError.ToString();
+            output_MSEClose.Text = closePriceError.ToString();
+            output_MSEHigh.Text = highPriceError.ToString();
+            output_MSELow.Text = lowPriceError.ToString();
 
             input_SelectedSample.Text = (index + 1).ToString();
 

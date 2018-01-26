@@ -540,7 +540,6 @@
             this.test_TrainPercentage.TabIndex = 46;
             this.test_TrainPercentage.Text = "Test";
             this.test_TrainPercentage.UseVisualStyleBackColor = true;
-            this.test_TrainPercentage.Visible = false;
             this.test_TrainPercentage.Click += new System.EventHandler(this.TestTrainPercentageClick);
             // 
             // MainWindow
